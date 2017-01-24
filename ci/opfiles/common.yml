@@ -1,0 +1,57 @@
+- type: replace
+  path: /stemcells?
+  value:
+  - alias: default
+    os: ubuntu-trusty
+    version: latest
+
+- type: replace
+  path: /releases?
+  value:
+  - name: cf-mysql
+    version: latest
+
+- type: replace
+  path: /update?
+  value:
+    canaries: 1
+    canary_watch_time: 10000-600000
+    update_watch_time: 10000-600000
+    max_in_flight: 1
+    serial: true
+
+- type: replace
+  path: /properties?
+  value:
+    cf_mysql:
+      mysql:
+        cluster_ips: [$ARBITRATOR_IP, $SCDC1_MASTER_IP, $WDC1_MASTER_IP]
+        admin_password: ((cf_mysql_mysql_admin_password))
+        cluster_health:
+          password: ((cf_mysql_mysql_cluster_health_password))
+        galera_healthcheck:
+          db_password: ((cf_mysql_mysql_galera_healthcheck_db_password))
+          endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
+          endpoint_username: galera-healthcheck
+        persistent_disk: 50000
+        roadmin_password: ((cf_mysql_mysql_roadmin_password))
+      proxy:
+        arbitrator_ip: $ARBITRATOR_IP
+        api_password: ((cf_mysql_proxy_api_password))
+
+- type: replace
+  path: /variables?
+  value:
+    - name: cf_mysql_mysql_admin_password
+      type: password
+    - name: cf_mysql_mysql_cluster_health_password
+      type: password
+    - name: cf_mysql_mysql_galera_healthcheck_db_password
+      type: password
+    - name: cf_mysql_mysql_galera_healthcheck_endpoint_password
+      type: password
+    - name: cf_mysql_mysql_roadmin_password
+      type: password
+    - name: cf_mysql_proxy_api_password
+      type: password
+
