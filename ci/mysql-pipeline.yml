@@ -18,7 +18,7 @@ resources:
   source:
     target: {{control-plane-bosh-url}}
     client_id: {{control-plane-bosh-client-id}}
-    password: {{control-plane-bosh-client-secret}}
+    client_secret: {{control-plane-bosh-client-secret}}
     ca_cert: {{control-plane-bosh-cacert}}
     deployment: mysql
 - name: scdc1-mysql
