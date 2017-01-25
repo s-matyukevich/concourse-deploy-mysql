@@ -5,7 +5,7 @@ cat > tmp/tmp-manifest.yml < $MANIFEST
 props=$(vault read -field=bosh-variables secret/mysql-props || true)
 cat $props > /tmp/props.yml
 
-bosh interpolate tmp/tmp-manifest.yml \
+bosh interpolate /tmp/tmp-manifest.yml \
   -o concourse-deploy-mysql/ci/opfiles/common.yml \
   -v arbitrator-ip=$ARBITRATOR_IP
   -v scdc1-master-ip=$SCDC1_MASTER_IP
