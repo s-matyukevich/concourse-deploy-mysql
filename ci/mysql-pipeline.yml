@@ -13,7 +13,6 @@ resources:
   type: bosh-io-stemcell
   source:
     name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
-- name: control-plane-mysql
 
 jobs:
 - name: deploy-to-control-plane
