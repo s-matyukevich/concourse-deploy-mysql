@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-cat > tmp/tmp-manifest.yml < $MANIFEST
+cat > /tmp/tmp-manifest.yml < $MANIFEST
 
 props=$(vault read -field=bosh-variables secret/mysql-props || true)
 cat $props > /tmp/props.yml
