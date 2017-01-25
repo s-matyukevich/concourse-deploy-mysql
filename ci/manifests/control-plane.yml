@@ -7,7 +7,7 @@ instance_groups:
   networks: 
   - name: CloudFoundry-10_119_68_0-22
     static_ips:
-      - $ARBITRATOR_IP
+      - ((arbitrator-ip))
   vm_type: large.memory
   stemcell: default
   jobs:

@@ -7,7 +7,7 @@ instance_groups:
   networks: 
   - name: pcf-services
     static_ips:
-    - $MASTER_IP
+    - ((scdc1-master-ip))
   vm_type: large.memory
   stemcell: default
   persistent_disk: large
@@ -20,7 +20,7 @@ instance_groups:
   networks: 
   - name: pcf-services
     static_ips:
-    - $PROXY_IP
+    - ((scdc1-proxy-ip))
   vm_type: medium
   stemcell: default
   jobs:

@@ -1,0 +1,30 @@
+name: mysql
+
+instance_groups:
+- name: mysql
+  instances: 1
+  azs: [z1]
+  networks: 
+  - name: pcf-services
+    static_ips:
+    - ((wdc1-master-ip))
+  vm_type: large.memory
+  stemcell: default
+  persistent_disk: large
+  jobs:
+  - {release: cf-mysql, name: mysql}
+
+- name: proxy
+  instances: 1
+  azs: [z1]
+  networks: 
+  - name: pcf-services
+    static_ips:
+    - ((wdc1-proxy-ip))
+  vm_type: medium
+  stemcell: default
+  jobs:
+  - {release: cf-mysql, name: proxy}
+  properties:
+    cf_mysql:
+      standalone: true
