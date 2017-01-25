@@ -34,6 +34,7 @@ jobs:
           MANIFEST: concourse-deploy-mysql/ci/manifests/control-plane.yml
           VAULT_ADDR: {{vault-addr}}
           VAULT_TOKEN: {{vault-token}}
+          VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
           WDC1_MASTER_IP: {{wdc1-master-ip}}
@@ -60,6 +61,7 @@ jobs:
           MANIFEST: concourse-deploy-mysql/ci/manifests/scdc1.yml
           VAULT_ADDR: {{vault-addr}}
           VAULT_TOKEN: {{vault-token}}
+          VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
           WDC1_MASTER_IP: {{wdc1-master-ip}}
@@ -88,6 +90,7 @@ jobs:
           MANIFEST: concourse-deploy-mysql/ci/manifests/wdc1.yml
           VAULT_ADDR: {{vault-addr}}
           VAULT_TOKEN: {{vault-token}}
+          VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
           WDC1_MASTER_IP: {{wdc1-master-ip}}
@@ -111,12 +114,10 @@ jobs:
         run:
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh
         params:
-          BOSH_CACERT: {{control-plane-bosh-cacert}}
-          BOSH_CLIENT: {{control-plane-bosh-client-id}}
-          BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
-          BOSH_DEPLOYMENT_NAME: mysql
           BOSH_ERRAND: bootstrap
-          BOSH_TARGET: {{control-plane-bosh-url}}
+          VAULT_ADDR: {{vault-addr}}
+          VAULT_TOKEN: {{vault-token}}
+          VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
         inputs:
         - name: concourse-deploy-mysql
         outputs:
@@ -134,12 +135,10 @@ jobs:
         run:
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh
         params:
-          BOSH_CACERT: {{control-plane-bosh-cacert}}
-          BOSH_CLIENT: {{control-plane-bosh-client-id}}
-          BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
-          BOSH_DEPLOYMENT_NAME: mysql
           BOSH_ERRAND: rejoin-unsafe
-          BOSH_TARGET: {{control-plane-bosh-url}}
+          VAULT_ADDR: {{vault-addr}}
+          VAULT_TOKEN: {{vault-token}}
+          VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
         inputs:
         - name: concourse-deploy-mysql
         outputs:
@@ -157,12 +156,10 @@ jobs:
         run:
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh
         params:
-          BOSH_CACERT: {{control-plane-bosh-cacert}}
-          BOSH_CLIENT: {{control-plane-bosh-client-id}}
-          BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
-          BOSH_DEPLOYMENT_NAME: mysql
           BOSH_ERRAND: smoke-tests
-          BOSH_TARGET: {{control-plane-bosh-url}}
+          VAULT_ADDR: {{vault-addr}}
+          VAULT_TOKEN: {{vault-token}}
+          VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
         inputs:
         - name: concourse-deploy-mysql
         outputs:

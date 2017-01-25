@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
-echo -e "$BOSH_CACERT" > ca.cert
+vault read -field=bosh-cacert secret/$VAULT_PROPERTIES_PATH > ca
+bosh_client=$(vault read -field=bosh-client-id secret/$VAULT_PROPERTIES_PATH)
+bosh_secret=$(vault read -field=bosh-secret secret/$VAULT_PROPERTIES_PATH)
+bosh_url=$(vault read -field=bosh-url secret/$VAULT_PROPERTIES_PATH)
 
-bosh --ca-cert ca.cert -n target $BOSH_URL
-bosh -n download manifest $BOSH_DEPLOYMENT_NAME $BOSH_DEPLOYMENT_NAME.yml
-bosh -n deployment $BOSH_DEPLOYMENT_NAME.yml
-bosh -n run errand $BOSH_ERRAND
+bosh -n -d mysql -e $bosh_url --ca-cert ca --cliet $bosh_client --client-secret $bosh_client_secret run-errand $BOSH_ERRAND
 
