@@ -17,22 +17,25 @@ resources:
   type: bosh-deployment
   source:
     target: {{control-plane-bosh-url}}
-    username: {{control-plane-bosh-user}}
-    password: {{control-plane-bosh-password}}
+    client_id: {{control-plane-bosh-client-id}}
+    password: {{control-plane-bosh-client-secret}}
+    ca_cert: {{control-plane-cacert}}
     deployment: mysql
 - name: scdc1-mysql
   type: bosh-deployment
   source:
     target: {{scdc1-bosh-url}}
-    username: {{scdc1-bosh-user}}
-    password: {{scdc1-bosh-password}}
+    client_id: {{scdc1-bosh-client-id}}
+    client_secret: {{scdc1-bosh-client-secret}}
+    ca_cert: {{scdc1-cacert}}
     deployment: mysql
 - name: wdc1-mysql
   type: bosh-deployment
   source:
     target: {{wdc1-bosh-url}}
-    username: {{wdc1-bosh-user}}
-    password: {{wdc1-bosh-password}}
+    client_id: {{wdc1-bosh-client-id}}
+    client_secret: {{wdc1-bosh-client-secret}}
+    ca_cert: {{wdc1-cacert}}
     deployment: mysql
 
 jobs:
@@ -118,3 +121,81 @@ jobs:
     - put: wdc1-mysql
       params:
         manifest: manifest/manifest.yml
+- name: bootstrap
+  plan:
+    - aggregate:
+      - get: concourse-deploy-mysql
+      - get: control-plane-mysql
+      - get: scdc1-mysql
+      - get: wdc1-mysql
+    - task: bootstrap
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source:
+            repository: smatyukevich/bosh-worker
+        run:
+          path: concourse-deploy-mysql/ci/tasks/run-errand.sh
+        params:
+          BOSH_CACERT: {{control-plane-bosh-cacert}}
+          BOSH_CLIENT: {{control-plane-bosh-client-id}}
+          BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
+          BOSH_DEPLOYMENT_NAME: mysql
+          BOSH_ERRAND: bootstrap
+          BOSH_TARGET: {{control-plane-bosh-url}}
+        inputs:
+        - name: concourse-deploy-mysql
+        outputs:
+- name: rejoin-unsafe
+  plan:
+    - aggregate:
+      - get: concourse-deploy-mysql
+      - get: control-plane-mysql
+      - get: scdc1-mysql
+      - get: wdc1-mysql
+    - task: rejoin-unsafe
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source:
+            repository: smatyukevich/bosh-worker
+        run:
+          path: concourse-deploy-mysql/ci/tasks/run-errand.sh
+        params:
+          BOSH_CACERT: {{control-plane-bosh-cacert}}
+          BOSH_CLIENT: {{control-plane-bosh-client-id}}
+          BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
+          BOSH_DEPLOYMENT_NAME: mysql
+          BOSH_ERRAND: rejoin-unsafe
+          BOSH_TARGET: {{control-plane-bosh-url}}
+        inputs:
+        - name: concourse-deploy-mysql
+        outputs:
+- name: smoke-tests
+  plan:
+    - aggregate:
+      - get: concourse-deploy-mysql
+      - get: control-plane-mysql
+      - get: scdc1-mysql
+      - get: wdc1-mysql
+    - task: smoke-tests
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source:
+            repository: smatyukevich/bosh-worker
+        run:
+          path: concourse-deploy-mysql/ci/tasks/run-errand.sh
+        params:
+          BOSH_CACERT: {{control-plane-bosh-cacert}}
+          BOSH_CLIENT: {{control-plane-bosh-client-id}}
+          BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
+          BOSH_DEPLOYMENT_NAME: mysql
+          BOSH_ERRAND: smoke-tests
+          BOSH_TARGET: {{control-plane-bosh-url}}
+        inputs:
+        - name: concourse-deploy-mysql
+        outputs:
