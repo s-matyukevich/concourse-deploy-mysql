@@ -126,8 +126,11 @@ jobs:
     - aggregate:
       - get: concourse-deploy-mysql
       - get: control-plane-mysql
+        passed: [deploy-to-control-plane]
       - get: scdc1-mysql
+        passed: [deploy-to-scdc1]
       - get: wdc1-mysql
+        passed: [deploy-to-wdc1]
     - task: bootstrap
       config:
         platform: linux
@@ -152,8 +155,11 @@ jobs:
     - aggregate:
       - get: concourse-deploy-mysql
       - get: control-plane-mysql
+        passed: [deploy-to-control-plane]
       - get: scdc1-mysql
+        passed: [deploy-to-scdc1]
       - get: wdc1-mysql
+        passed: [deploy-to-wdc1]
     - task: rejoin-unsafe
       config:
         platform: linux
@@ -178,11 +184,11 @@ jobs:
     - aggregate:
       - get: concourse-deploy-mysql
       - get: control-plane-mysql
-        passed: deploy-to-control-plane
+        passed: [deploy-to-control-plane]
       - get: scdc1-mysql
-        passed: deploy-to-scdc1
+        passed: [deploy-to-scdc1]
       - get: wdc1-mysql
-        passed: deploy-to-wdc1
+        passed: [deploy-to-wdc1]
     - task: smoke-tests
       config:
         platform: linux
