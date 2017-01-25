@@ -60,9 +60,9 @@ jobs:
           VAULT_TOKEN: {{vault-token}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
-          WCDC1_MASTER_IP: {{wdc1-master-ip}}
+          WDC1_MASTER_IP: {{wdc1-master-ip}}
           SCDC1_PROXY_IP: {{scdc1-proxy-ip}}
-          WCDC1_PROXY_IP: {{wdc1-proxy-ip}}
+          WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
         - name: concourse-deploy-mysql
         outputs:
@@ -91,9 +91,9 @@ jobs:
           VAULT_TOKEN: {{vault-token}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
-          WCDC1_MASTER_IP: {{wdc1-master-ip}}
+          WDC1_MASTER_IP: {{wdc1-master-ip}}
           SCDC1_PROXY_IP: {{scdc1-proxy-ip}}
-          WCDC1_PROXY_IP: {{wdc1-proxy-ip}}
+          WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
         - name: concourse-deploy-mysql
         outputs:
@@ -122,9 +122,9 @@ jobs:
           VAULT_TOKEN: {{vault-token}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
-          WCDC1_MASTER_IP: {{wdc1-master-ip}}
+          WDC1_MASTER_IP: {{wdc1-master-ip}}
           SCDC1_PROXY_IP: {{scdc1-proxy-ip}}
-          WCDC1_PROXY_IP: {{wdc1-proxy-ip}}
+          WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
         - name: concourse-deploy-mysql
         outputs:
