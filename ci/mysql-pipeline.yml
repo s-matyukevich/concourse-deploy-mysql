@@ -138,7 +138,7 @@ jobs:
         run:
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh
         params:
-          BOSH_CACERT: {{control-plane-bosh-bosh-cacert}}
+          BOSH_CACERT: {{control-plane-bosh-cacert}}
           BOSH_CLIENT: {{control-plane-bosh-client-id}}
           BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
           BOSH_DEPLOYMENT_NAME: mysql
@@ -164,7 +164,7 @@ jobs:
         run:
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh
         params:
-          BOSH_CACERT: {{control-plane-bosh-bosh-cacert}}
+          BOSH_CACERT: {{control-plane-bosh-cacert}}
           BOSH_CLIENT: {{control-plane-bosh-client-id}}
           BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
           BOSH_DEPLOYMENT_NAME: mysql
@@ -190,7 +190,7 @@ jobs:
         run:
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh
         params:
-          BOSH_CACERT: {{control-plane-bosh-bosh-cacert}}
+          BOSH_CACERT: {{control-plane-bosh-cacert}}
           BOSH_CLIENT: {{control-plane-bosh-client-id}}
           BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
           BOSH_DEPLOYMENT_NAME: mysql
