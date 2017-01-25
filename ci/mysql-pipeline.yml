@@ -56,6 +56,8 @@ jobs:
           path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh 
         params:
           MANIFEST: concourse-deploy-mysql/ci/manifests/control-plane.yml
+          VAULT_ADDR: {{vault-addr}}
+          VAULT_TOKEN: {{vault-token}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
           WCDC1_MASTER_IP: {{wdc1-master-ip}}
@@ -85,6 +87,8 @@ jobs:
           path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh 
         params:
           MANIFEST: concourse-deploy-mysql/ci/manifests/scdc1.yml
+          VAULT_ADDR: {{vault-addr}}
+          VAULT_TOKEN: {{vault-token}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
           WCDC1_MASTER_IP: {{wdc1-master-ip}}
@@ -114,6 +118,8 @@ jobs:
           path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh 
         params:
           MANIFEST: concourse-deploy-mysql/ci/manifests/wdc1.yml
+          VAULT_ADDR: {{vault-addr}}
+          VAULT_TOKEN: {{vault-token}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
           WCDC1_MASTER_IP: {{wdc1-master-ip}}
