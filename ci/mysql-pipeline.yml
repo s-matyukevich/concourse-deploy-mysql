@@ -115,6 +115,6 @@ jobs:
         - name: concourse-deploy-mysql
         outputs:
         - name: manifest
-    - put: scdc1-wdc1
+    - put: wdc1-mysql
       params:
         manifest: manifest/manifest.yml
