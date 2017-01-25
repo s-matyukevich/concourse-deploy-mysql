@@ -178,8 +178,11 @@ jobs:
     - aggregate:
       - get: concourse-deploy-mysql
       - get: control-plane-mysql
+        passed: deploy-to-control-plane
       - get: scdc1-mysql
+        passed: deploy-to-scdc1
       - get: wdc1-mysql
+        passed: deploy-to-wdc1
     - task: smoke-tests
       config:
         platform: linux
