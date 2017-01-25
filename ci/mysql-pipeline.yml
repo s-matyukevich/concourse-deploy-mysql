@@ -19,7 +19,7 @@ resources:
     target: {{control-plane-bosh-url}}
     client_id: {{control-plane-bosh-client-id}}
     password: {{control-plane-bosh-client-secret}}
-    ca_cert: {{control-plane-cacert}}
+    ca_cert: {{control-plane-bosh-cacert}}
     deployment: mysql
 - name: scdc1-mysql
   type: bosh-deployment
@@ -27,7 +27,7 @@ resources:
     target: {{scdc1-bosh-url}}
     client_id: {{scdc1-bosh-client-id}}
     client_secret: {{scdc1-bosh-client-secret}}
-    ca_cert: {{scdc1-cacert}}
+    ca_cert: {{scdc1-bosh-cacert}}
     deployment: mysql
 - name: wdc1-mysql
   type: bosh-deployment
@@ -35,7 +35,7 @@ resources:
     target: {{wdc1-bosh-url}}
     client_id: {{wdc1-bosh-client-id}}
     client_secret: {{wdc1-bosh-client-secret}}
-    ca_cert: {{wdc1-cacert}}
+    ca_cert: {{wdc1-bosh-cacert}}
     deployment: mysql
 
 jobs:
@@ -138,7 +138,7 @@ jobs:
         run:
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh
         params:
-          BOSH_CACERT: {{control-plane-bosh-cacert}}
+          BOSH_CACERT: {{control-plane-bosh-bosh-cacert}}
           BOSH_CLIENT: {{control-plane-bosh-client-id}}
           BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
           BOSH_DEPLOYMENT_NAME: mysql
@@ -164,7 +164,7 @@ jobs:
         run:
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh
         params:
-          BOSH_CACERT: {{control-plane-bosh-cacert}}
+          BOSH_CACERT: {{control-plane-bosh-bosh-cacert}}
           BOSH_CLIENT: {{control-plane-bosh-client-id}}
           BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
           BOSH_DEPLOYMENT_NAME: mysql
@@ -190,7 +190,7 @@ jobs:
         run:
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh
         params:
-          BOSH_CACERT: {{control-plane-bosh-cacert}}
+          BOSH_CACERT: {{control-plane-bosh-bosh-cacert}}
           BOSH_CLIENT: {{control-plane-bosh-client-id}}
           BOSH_CLIENT_SECRET: {{control-plane-bosh-client-secret}}
           BOSH_DEPLOYMENT_NAME: mysql
