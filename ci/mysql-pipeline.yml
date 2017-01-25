@@ -14,29 +14,6 @@ resources:
   source:
     name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
 - name: control-plane-mysql
-  type: bosh-deployment
-  source:
-    target: {{control-plane-bosh-url}}
-    client_id: {{control-plane-bosh-client-id}}
-    client_secret: {{control-plane-bosh-client-secret}}
-    ca_cert: {{control-plane-bosh-cacert}}
-    deployment: mysql
-- name: scdc1-mysql
-  type: bosh-deployment
-  source:
-    target: {{scdc1-bosh-url}}
-    client_id: {{scdc1-bosh-client-id}}
-    client_secret: {{scdc1-bosh-client-secret}}
-    ca_cert: {{scdc1-bosh-cacert}}
-    deployment: mysql
-- name: wdc1-mysql
-  type: bosh-deployment
-  source:
-    target: {{wdc1-bosh-url}}
-    client_id: {{wdc1-bosh-client-id}}
-    client_secret: {{wdc1-bosh-client-secret}}
-    ca_cert: {{wdc1-bosh-cacert}}
-    deployment: mysql
 
 jobs:
 - name: deploy-to-control-plane
@@ -65,11 +42,6 @@ jobs:
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
         - name: concourse-deploy-mysql
-        outputs:
-        - name: manifest
-    - put: control-plane-mysql
-      params:
-        manifest: manifest/deployment.yml
 - name: deploy-to-scdc1
   plan:
     - aggregate:
@@ -98,9 +70,6 @@ jobs:
         - name: concourse-deploy-mysql
         outputs:
         - name: manifest
-    - put: scdc1-mysql
-      params:
-        manifest: manifest/deployment.yml
 - name: deploy-to-wdc1
   plan:
     - aggregate:
@@ -129,19 +98,10 @@ jobs:
         - name: concourse-deploy-mysql
         outputs:
         - name: manifest
-    - put: wdc1-mysql
-      params:
-        manifest: manifest/deployment.yml
 - name: bootstrap
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
-      - get: control-plane-mysql
-        passed: [deploy-to-control-plane]
-      - get: scdc1-mysql
-        passed: [deploy-to-scdc1]
-      - get: wdc1-mysql
-        passed: [deploy-to-wdc1]
     - task: bootstrap
       config:
         platform: linux
@@ -165,12 +125,6 @@ jobs:
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
-      - get: control-plane-mysql
-        passed: [deploy-to-control-plane]
-      - get: scdc1-mysql
-        passed: [deploy-to-scdc1]
-      - get: wdc1-mysql
-        passed: [deploy-to-wdc1]
     - task: rejoin-unsafe
       config:
         platform: linux
@@ -194,12 +148,6 @@ jobs:
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
-      - get: control-plane-mysql
-        passed: [deploy-to-control-plane]
-      - get: scdc1-mysql
-        passed: [deploy-to-scdc1]
-      - get: wdc1-mysql
-        passed: [deploy-to-wdc1]
     - task: smoke-tests
       config:
         platform: linux
