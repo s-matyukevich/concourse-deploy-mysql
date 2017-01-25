@@ -1,3 +1,3 @@
 #!bash -e
 
-cat > manifest/deployment.yml < $1
+cat > manifest/deployment.yml < $MANIFEST

@@ -53,8 +53,9 @@ jobs:
           source:
             repository: smatyukevich/bosh-worker
         run:
-          path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh concourse-deploy-mysql/ci/manifests/control-plane.yml
+          path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh 
         params:
+          MANIFEST: concourse-deploy-mysql/ci/manifests/control-plane.yml
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
           WCDC1_MASTER_IP: {{wdc1-master-ip}}
@@ -79,8 +80,9 @@ jobs:
           source:
             repository: smatyukevich/bosh-worker
         run:
-          path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh concourse-deploy-mysql/ci/manifests/datacenter.yml
+          path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh 
         params:
+          MANIFEST: concourse-deploy-mysql/ci/manifests/datacenter.yml
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
           WCDC1_MASTER_IP: {{wdc1-master-ip}}
@@ -107,8 +109,9 @@ jobs:
           source:
             repository: smatyukevich/bosh-worker
         run:
-          path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh concourse-deploy-mysql/ci/manifests/datacenter.yml
+          path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh 
         params:
+          MANIFEST: concourse-deploy-mysql/ci/manifests/datacenter.yml
           ARBITRATOR_IP: {{arbitrator-ip}}
           SCDC1_MASTER_IP: {{scdc1-master-ip}}
           WCDC1_MASTER_IP: {{wdc1-master-ip}}
