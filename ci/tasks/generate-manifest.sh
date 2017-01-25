@@ -3,7 +3,7 @@
 cat > /tmp/tmp-manifest.yml < $MANIFEST
 
 props=$(vault read -field=bosh-variables secret/mysql-props || true)
-cat $props > /tmp/props.yml
+echo "$props" > /tmp/props.yml
 
 bosh interpolate /tmp/tmp-manifest.yml \
   -o concourse-deploy-mysql/ci/opfiles/common.yml \
