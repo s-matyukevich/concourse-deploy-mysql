@@ -65,7 +65,7 @@ jobs:
         - name: manifest
     - put: control-plane-mysql
       params:
-        manifest: manifest/manifest.yml
+        manifest: manifest/deployment.yml
 - name: deploy-to-scdc1
   plan:
     - aggregate:
@@ -94,7 +94,7 @@ jobs:
         - name: manifest
     - put: scdc1-mysql
       params:
-        manifest: manifest/manifest.yml
+        manifest: manifest/deployment.yml
 - name: deploy-to-wdc1
   plan:
     - aggregate:
@@ -123,7 +123,7 @@ jobs:
         - name: manifest
     - put: wdc1-mysql
       params:
-        manifest: manifest/manifest.yml
+        manifest: manifest/deployment.yml
 - name: bootstrap
   plan:
     - aggregate:
