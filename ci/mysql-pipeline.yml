@@ -42,6 +42,8 @@ jobs:
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
         - name: concourse-deploy-mysql
+        - name: vsphere-stemcell
+        - name: mysql-release
 - name: deploy-to-scdc1
   plan:
     - aggregate:
@@ -69,8 +71,8 @@ jobs:
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
         - name: concourse-deploy-mysql
-        outputs:
-        - name: manifest
+        - name: vsphere-stemcell
+        - name: mysql-release
 - name: deploy-to-wdc1
   plan:
     - aggregate:
@@ -98,8 +100,8 @@ jobs:
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
         - name: concourse-deploy-mysql
-        outputs:
-        - name: manifest
+        - name: vsphere-stemcell
+        - name: mysql-release
 - name: bootstrap
   plan:
     - aggregate:
