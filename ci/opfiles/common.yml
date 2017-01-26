@@ -25,7 +25,6 @@
   value:
     cf_mysql:
       mysql:
-        external_host: ""
         cluster_ips: 
         - ((arbitrator-ip))
         - ((scdc1-master-ip-ip))
@@ -43,6 +42,7 @@
         arbitrator_ip: ((arbitrator-ip))
         api_password: ((cf_mysql_proxy_api_password))
         api_username: proxy
+      external_host: ""
     nats:
       machines: []
 
