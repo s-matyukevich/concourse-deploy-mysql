@@ -3,7 +3,7 @@ name: mysql
 instance_groups:
 - name: mysql
   instances: 1
-  azs: [az1]
+  azs: [pcf-services]
   networks: 
   - name: pcf-services
     static_ips:
@@ -16,7 +16,7 @@ instance_groups:
 
 - name: proxy
   instances: 1
-  azs: [az1]
+  azs: [pcf-services]
   networks: 
   - name: pcf-services
     static_ips:
