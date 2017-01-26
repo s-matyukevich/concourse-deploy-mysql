@@ -3,7 +3,7 @@ name: mysql
 instance_groups:
 - name: arbitrator
   instances: 1
-  azs: [z1]
+  azs: [az1]
   networks: 
   - name: CloudFoundry-10_119_68_0-22
     static_ips:
@@ -16,7 +16,7 @@ instance_groups:
 - name: bootstrap
   instances: 1
   lifecycle: errand
-  azs: [z1]
+  azs: [az1]
   networks: [{name: default}]
   vm_type: default
   stemcell: default
@@ -26,7 +26,7 @@ instance_groups:
 - name: rejoin-unsafe
   instances: 1
   lifecycle: errand
-  azs: [z1]
+  azs: [az1]
   networks: [{name: default}]
   vm_type: default
   stemcell: default
@@ -36,7 +36,7 @@ instance_groups:
 - name: smoke-tests
   instances: 1
   lifecycle: errand
-  azs: [z1]
+  azs: [az1]
   networks: [{name: default}]
   vm_type: default
   stemcell: default
