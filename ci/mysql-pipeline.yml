@@ -122,7 +122,6 @@ jobs:
           VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
         inputs:
         - name: concourse-deploy-mysql
-        outputs:
 - name: rejoin-unsafe
   plan:
     - aggregate:
@@ -164,4 +163,3 @@ jobs:
           VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
         inputs:
         - name: concourse-deploy-mysql
-        outputs:

@@ -10,7 +10,7 @@ instance_groups:
     - ((wdc1-master-ip))
   vm_type: large.memory
   stemcell: default
-  persistent_disk: large
+  persistent_disk: 10000
   jobs:
   - {release: cf-mysql, name: mysql}
 
