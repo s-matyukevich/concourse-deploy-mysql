@@ -18,7 +18,7 @@ instance_groups:
   lifecycle: errand
   azs: [az1]
   networks: [{name: default}]
-  vm_type: default
+  vm_type: large.memory
   stemcell: default
   jobs:
   - {release: cf-mysql, name: bootstrap}
@@ -28,7 +28,7 @@ instance_groups:
   lifecycle: errand
   azs: [az1]
   networks: [{name: default}]
-  vm_type: default
+  vm_type: large.memory
   stemcell: default
   jobs:
   - {release: cf-mysql, name: rejoin-unsafe}
@@ -38,7 +38,7 @@ instance_groups:
   lifecycle: errand
   azs: [az1]
   networks: [{name: default}]
-  vm_type: default
+  vm_type: large.memory
   stemcell: default
   jobs:
   - {release: cf-mysql, name: smoke-tests}
