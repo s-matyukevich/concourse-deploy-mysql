@@ -4,7 +4,7 @@ cat > /tmp/tmp-manifest.yml < $MANIFEST
 
 vault read -field=bosh-cacert secret/$VAULT_PROPERTIES_PATH > ca
 bosh_client=$(vault read -field=bosh-client-id secret/$VAULT_PROPERTIES_PATH)
-bosh_secret=$(vault read -field=bosh-secret secret/$VAULT_PROPERTIES_PATH)
+bosh_secret=$(vault read -field=bosh-client-secret secret/$VAULT_PROPERTIES_PATH)
 bosh_url=$(vault read -field=bosh-url secret/$VAULT_PROPERTIES_PATH)
 
 
