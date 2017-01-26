@@ -41,6 +41,9 @@
       proxy:
         arbitrator_ip: ((arbitrator-ip))
         api_password: ((cf_mysql_proxy_api_password))
+        api_username: proxy
+    nats:
+      machines: []
 
 - type: replace
   path: /variables?
