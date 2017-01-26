@@ -21,7 +21,7 @@ jobs:
       - get: vsphere-stemcell
       - get: mysql-release
       - get: concourse-deploy-mysql
-    - task: generate-manifest
+    - task: deploy
       config:
         platform: linux
         image_resource:
@@ -29,7 +29,7 @@ jobs:
           source:
             repository: smatyukevich/bosh-worker
         run:
-          path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh 
+          path: concourse-deploy-mysql/ci/tasks/deploy.sh 
         params:
           MANIFEST: concourse-deploy-mysql/ci/manifests/control-plane.yml
           VAULT_ADDR: {{vault-addr}}
@@ -50,7 +50,7 @@ jobs:
       - get: vsphere-stemcell
       - get: mysql-release
       - get: concourse-deploy-mysql
-    - task: generate-manifest
+    - task: deploy
       config:
         platform: linux
         image_resource:
@@ -58,7 +58,7 @@ jobs:
           source:
             repository: smatyukevich/bosh-worker
         run:
-          path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh 
+          path: concourse-deploy-mysql/ci/tasks/deploy.sh 
         params:
           MANIFEST: concourse-deploy-mysql/ci/manifests/scdc1.yml
           VAULT_ADDR: {{vault-addr}}
@@ -79,7 +79,7 @@ jobs:
       - get: vsphere-stemcell
       - get: mysql-release
       - get: concourse-deploy-mysql
-    - task: generate-manifest
+    - task: deploy
       config:
         platform: linux
         image_resource:
@@ -87,7 +87,7 @@ jobs:
           source:
             repository: smatyukevich/bosh-worker
         run:
-          path: concourse-deploy-mysql/ci/tasks/generate-manifest.sh 
+          path: concourse-deploy-mysql/ci/tasks/deploy.sh 
         params:
           MANIFEST: concourse-deploy-mysql/ci/manifests/wdc1.yml
           VAULT_ADDR: {{vault-addr}}

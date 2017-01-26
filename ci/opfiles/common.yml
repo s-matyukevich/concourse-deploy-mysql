@@ -26,9 +26,9 @@
     cf_mysql:
       mysql:
         cluster_ips: 
-        - ((arbitrator-ip))
         - ((scdc1-master-ip))
         - ((wdc1-master-ip))
+        - ((arbitrator-ip))
         admin_password: ((cf_mysql_mysql_admin_password))
         cluster_health:
           password: ((cf_mysql_mysql_cluster_health_password))
