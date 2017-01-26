@@ -28,3 +28,6 @@ instance_groups:
   properties:
     cf_mysql:
       standalone: true
+      mysql:
+        cluster_ips: 
+        - ((wdc1-master-ip))
