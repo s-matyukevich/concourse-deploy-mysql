@@ -25,6 +25,7 @@
   value:
     cf_mysql:
       mysql:
+        external_host: ""
         cluster_ips: 
         - ((arbitrator-ip))
         - ((scdc1-master-ip-ip))
