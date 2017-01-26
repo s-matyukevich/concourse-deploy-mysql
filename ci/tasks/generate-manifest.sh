@@ -3,11 +3,11 @@
 cat > /tmp/tmp-manifest.yml < $MANIFEST
 
 vault read -field=bosh-cacert secret/$VAULT_PROPERTIES_PATH > ca
-BOSH_CA_CERT=ca
-BOSH_CLIENT_SECRET=$(vault read -field=bosh-client-secret secret/$VAULT_PROPERTIES_PATH)
-BOSH_ENVIRONMENT=$(vault read -field=bosh-url secret/$VAULT_PROPERTIES_PATH)
-BOSH_CLIENT=director
-BOSH_DEPLOYMENT=mysql
+export BOSH_CA_CERT=ca
+export BOSH_CLIENT_SECRET=$(vault read -field=bosh-client-secret secret/$VAULT_PROPERTIES_PATH)
+export BOSH_ENVIRONMENT=$(vault read -field=bosh-url secret/$VAULT_PROPERTIES_PATH)
+export BOSH_CLIENT=director
+export BOSH_DEPLOYMENT=mysql
 
 
 props=$(vault read -field=bosh-variables secret/mysql-props || true)
