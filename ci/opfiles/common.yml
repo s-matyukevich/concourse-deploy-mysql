@@ -25,7 +25,10 @@
   value:
     cf_mysql:
       mysql:
-        cluster_ips: [$ARBITRATOR_IP, $SCDC1_MASTER_IP, $WDC1_MASTER_IP]
+        cluster_ips: 
+        - ((arbitrator-ip))
+        - ((scdc1-master-ip-ip))
+        - ((wdc1-master-ip-ip))
         admin_password: ((cf_mysql_mysql_admin_password))
         cluster_health:
           password: ((cf_mysql_mysql_cluster_health_password))
@@ -36,7 +39,7 @@
         persistent_disk: 50000
         roadmin_password: ((cf_mysql_mysql_roadmin_password))
       proxy:
-        arbitrator_ip: $ARBITRATOR_IP
+        arbitrator_ip: ((arbitrator-ip))
         api_password: ((cf_mysql_proxy_api_password))
 
 - type: replace
