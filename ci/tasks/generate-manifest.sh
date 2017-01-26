@@ -3,9 +3,11 @@
 cat > /tmp/tmp-manifest.yml < $MANIFEST
 
 vault read -field=bosh-cacert secret/$VAULT_PROPERTIES_PATH > ca
-bosh_client=$(vault read -field=bosh-client-id secret/$VAULT_PROPERTIES_PATH)
-bosh_secret=$(vault read -field=bosh-client-secret secret/$VAULT_PROPERTIES_PATH)
-bosh_url=$(vault read -field=bosh-url secret/$VAULT_PROPERTIES_PATH)
+BOSH_CA_CERT=ca
+BOSH_CLIENT_SECRET=$(vault read -field=bosh-client-secret secret/$VAULT_PROPERTIES_PATH)
+BOSH_ENVIRONMENT=$(vault read -field=bosh-url secret/$VAULT_PROPERTIES_PATH)
+BOSH_CLIENT=director
+BOSH_DEPLOYMENT=mysql
 
 
 props=$(vault read -field=bosh-variables secret/mysql-props || true)
@@ -22,6 +24,6 @@ bosh interpolate /tmp/tmp-manifest.yml \
   
 vault write secret/mysql-props bosh-variables=@/tmp/props.yml
 
-bosh -n -e $bosh_url --ca-cert ca --client $bosh_client --client-secret $bosh_secret upload-release mysql-release/release.tgz
-bosh -n -e $bosh_url --ca-cert ca --client $bosh_client --client-secret $bosh_secret upload-stemcell vsphere-stemcell/stemcell.tgz
-bosh -n -d mysql -e $bosh_url --ca-cert ca --client $bosh_client --client-secret $bosh_secret deploy deployment.yml
+bosh -n upload-release mysql-release/release.tgz
+bosh -n upload-stemcell vsphere-stemcell/stemcell.tgz
+bosh -n deploy deployment.yml
