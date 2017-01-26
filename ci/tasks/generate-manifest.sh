@@ -22,4 +22,4 @@ bosh interpolate /tmp/tmp-manifest.yml \
   
 vault write secret/mysql-props bosh-variables=@/tmp/props.yml
 
-bosh -n -d mysql -e $bosh_url --ca-cert ca --cliet $bosh_client --client-secret $bosh_client_secret deploy deployment.yml
+bosh -n -d mysql -e $bosh_url --ca-cert ca --client $bosh_client --client-secret $bosh_client_secret deploy deployment.yml
