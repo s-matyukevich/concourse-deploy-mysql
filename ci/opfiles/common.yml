@@ -25,7 +25,7 @@
   value:
     cf_mysql:
       mysql:
-        disable_auto_sst: true
+        disable_auto_sst: false
         cluster_ips: 
         - ((scdc1-master-ip))
         - ((wdc1-master-ip))
