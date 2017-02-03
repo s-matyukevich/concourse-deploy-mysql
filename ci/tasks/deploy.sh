@@ -35,6 +35,4 @@ bosh interpolate /tmp/tmp-manifest.yml \
   
 vault write secret/mysql-props bosh-variables=@/tmp/props.yml
 
-bosh -n upload-release mysql-release/release.tgz
-bosh -n upload-stemcell vsphere-stemcell/stemcell.tgz
 bosh -n deploy deployment.yml
