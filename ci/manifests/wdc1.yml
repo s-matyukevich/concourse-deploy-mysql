@@ -2,7 +2,7 @@ name: mysql
 
 instance_groups:
 - name: mysql
-  instances: 3
+  instances: ((wdc1-master-nodes))
   azs: [az1]
   networks: 
   - name: pcf-services
