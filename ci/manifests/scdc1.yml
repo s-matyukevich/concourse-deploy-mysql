@@ -6,8 +6,7 @@ instance_groups:
   azs: [pcf-services]
   networks: 
   - name: pcf-services
-    static_ips:
-    - ((scdc1-master-ip))
+    static_ips: ((scdc1-master-ips))
   vm_type: large.memory
   stemcell: default
   persistent_disk_type: medium
@@ -27,4 +26,6 @@ instance_groups:
   - {release: cf-mysql, name: proxy}
   properties:
     cf_mysql:
+      mysql:
+        cluster_ips: ((scdc1-master-ips))
       standalone: true

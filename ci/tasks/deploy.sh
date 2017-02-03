@@ -13,12 +13,19 @@ export BOSH_DEPLOYMENT=mysql
 props=$(vault read -field=bosh-variables secret/mysql-props || true)
 echo "$props" > /tmp/props.yml
 
+scdc_ips=${SCDC1_MASTER_IPS#"["}
+scdc_ips=${scdc_ips%"]"}
+wdc_ips=${WDC1_MASTER_IPS#"["}
+wdc_ips=${wdc_ips%"]"}
+cluster_ips="[$ARBITRATOR_IP,$scdc_ips,$wdc_ips]"
+
 bosh interpolate /tmp/tmp-manifest.yml \
   -o concourse-deploy-mysql/ci/opfiles/common.yml \
+  -v cluster-ips=$cluster_ips \
   -v arbitrator-ip=$ARBITRATOR_IP \
-  -v scdc1-master-ip=$SCDC1_MASTER_IP \
+  -v scdc1-master-ips=$SCDC1_MASTER_IPS \
   -v scdc1-proxy-ip=$SCDC1_PROXY_IP \
-  -v wdc1-master-ip=$WDC1_MASTER_IP \
+  -v wdc1-master-ips=$WDC1_MASTER_IPS \
   -v wdc1-proxy-ip=$WDC1_PROXY_IP \
   --vars-store /tmp/props.yml   > deployment.yml
   

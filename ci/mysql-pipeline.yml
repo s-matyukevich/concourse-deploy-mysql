@@ -36,8 +36,8 @@ jobs:
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
-          SCDC1_MASTER_IP: {{scdc1-master-ip}}
-          WDC1_MASTER_IP: {{wdc1-master-ip}}
+          SCDC1_MASTER_IPS: {{scdc1-master-ips}}
+          WDC1_MASTER_IPS: {{wdc1-master-ips}}
           SCDC1_PROXY_IP: {{scdc1-proxy-ip}}
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
@@ -65,8 +65,8 @@ jobs:
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
-          SCDC1_MASTER_IP: {{scdc1-master-ip}}
-          WDC1_MASTER_IP: {{wdc1-master-ip}}
+          SCDC1_MASTER_IPS: {{scdc1-master-ips}}
+          WDC1_MASTER_IPS: {{wdc1-master-ips}}
           SCDC1_PROXY_IP: {{scdc1-proxy-ip}}
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
@@ -94,8 +94,8 @@ jobs:
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
-          SCDC1_MASTER_IP: {{scdc1-master-ip}}
-          WDC1_MASTER_IP: {{wdc1-master-ip}}
+          SCDC1_MASTER_IPS: {{scdc1-master-ips}}
+          WDC1_MASTER_IPS: {{wdc1-master-ips}}
           SCDC1_PROXY_IP: {{scdc1-proxy-ip}}
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
