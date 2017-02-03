@@ -2,7 +2,7 @@ name: mysql
 
 instance_groups:
 - name: mysql
-  instances: 1
+  instances: 3
   azs: [az1]
   networks: 
   - name: pcf-services
