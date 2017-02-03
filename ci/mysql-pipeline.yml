@@ -28,6 +28,7 @@ jobs:
         params:
           RELEASE_URL: {{release-url}}
         inputs:
+        - name: concourse-deploy-mysql
         - name: vsphere-stemcell
 - name: deploy-to-control-plane
   plan:
