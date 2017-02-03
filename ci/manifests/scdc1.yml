@@ -7,7 +7,7 @@ instance_groups:
   networks: 
   - name: pcf-services
     static_ips: ((scdc1-master-ips))
-  vm_type: large.memory
+  vm_type: medium
   stemcell: default
   persistent_disk_type: medium
   jobs:
