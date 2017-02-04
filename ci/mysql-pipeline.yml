@@ -146,6 +146,7 @@ jobs:
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
+        passed: [deploy-to-control-plane]
     - task: bootstrap
       config:
         platform: linux
