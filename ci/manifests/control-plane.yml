@@ -13,6 +13,18 @@ instance_groups:
   jobs:
   - {release: cf-mysql, name: arbitrator}
 
+- name: backup
+  instances: 1
+  azs: [az1]
+  networks: 
+  - name: CloudFoundry-10_119_68_0-22
+    static_ips:
+      - ((backup-ip))
+  vm_type: medium
+  stemcell: default
+  jobs:
+  - {release: cf-mysql, name: mysql}
+
 - name: bootstrap
   instances: 1
   lifecycle: errand

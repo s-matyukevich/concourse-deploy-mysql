@@ -5,8 +5,6 @@ cat > /tmp/tmp-manifest.yml < $MANIFEST
 BASEDIR=$(dirname "$0")
 source $BASEDIR/common.sh  $VAULT_PROPERTIES_PATH
 
-
-
 props=$(vault read -field=bosh-variables secret/mysql-props || true)
 echo "$props" > /tmp/props.yml
 
