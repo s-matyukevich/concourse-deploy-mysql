@@ -26,6 +26,8 @@ jobs:
         run:
           path: concourse-deploy-mysql/ci/tasks/upload-release.sh 
         params:
+          VAULT_ADDR: {{vault-addr}}
+          VAULT_TOKEN: {{vault-token}}
           CONTROL_PLANE_VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
           SCDC1_VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}
           WDC1_VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}
