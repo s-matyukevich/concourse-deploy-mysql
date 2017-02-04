@@ -3,7 +3,7 @@
 cat > /tmp/tmp-manifest.yml < $MANIFEST
 
 BASEDIR=$(dirname "$0")
-$BASEDIR/common.sh  $VAULT_PROPERTIES_PATH
+source $BASEDIR/common.sh  $VAULT_PROPERTIES_PATH
 
 
 
