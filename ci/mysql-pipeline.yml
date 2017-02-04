@@ -40,6 +40,7 @@ jobs:
     - aggregate:
       - get: vsphere-stemcell
       - get: concourse-deploy-mysql
+        passed: [deploy-to-wdc1]
     - task: deploy
       config:
         platform: linux
@@ -67,6 +68,7 @@ jobs:
     - aggregate:
       - get: vsphere-stemcell
       - get: concourse-deploy-mysql
+        passed: [upload-release-and-stemcell]
     - task: deploy
       config:
         platform: linux
@@ -94,6 +96,7 @@ jobs:
     - aggregate:
       - get: vsphere-stemcell
       - get: concourse-deploy-mysql
+        passed: [deploy-to-scdc1]
     - task: deploy
       config:
         platform: linux
@@ -161,6 +164,7 @@ jobs:
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
+        passed: [deploy-to-control-plane]
     - task: smoke-tests
       config:
         platform: linux
