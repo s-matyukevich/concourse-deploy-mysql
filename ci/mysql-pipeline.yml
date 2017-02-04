@@ -56,6 +56,7 @@ jobs:
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
+          BACKUP_IP: {{backup-ip}}
           SCDC1_MASTER_IPS: {{scdc1-master-ips}}
           WDC1_MASTER_IPS: {{wdc1-master-ips}}
           SCDC1_PROXY_IP: {{scdc1-proxy-ip}}
@@ -84,6 +85,7 @@ jobs:
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
+          BACKUP_IP: {{backup-ip}}
           SCDC1_MASTER_IPS: {{scdc1-master-ips}}
           WDC1_MASTER_IPS: {{wdc1-master-ips}}
           SCDC1_PROXY_IP: {{scdc1-proxy-ip}}
@@ -112,6 +114,7 @@ jobs:
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
+          BACKUP_IP: {{backup-ip}}
           SCDC1_MASTER_IPS: {{scdc1-master-ips}}
           WDC1_MASTER_IPS: {{wdc1-master-ips}}
           SCDC1_PROXY_IP: {{scdc1-proxy-ip}}
@@ -134,6 +137,25 @@ jobs:
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh
         params:
           BOSH_ERRAND: bootstrap
+          VAULT_ADDR: {{vault-addr}}
+          VAULT_TOKEN: {{vault-token}}
+          VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
+        inputs:
+        - name: concourse-deploy-mysql
+- name: backup
+  plan:
+    - aggregate:
+      - get: concourse-deploy-mysql
+    - task: bootstrap
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source:
+            repository: smatyukevich/bosh-worker
+        run:
+          path: concourse-deploy-mysql/ci/tasks/backup.sh
+        params:
           VAULT_ADDR: {{vault-addr}}
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}

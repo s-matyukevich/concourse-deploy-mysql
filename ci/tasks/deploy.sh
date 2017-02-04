@@ -20,6 +20,7 @@ bosh interpolate /tmp/tmp-manifest.yml \
   -o concourse-deploy-mysql/ci/opfiles/common.yml \
   -v cluster-ips=$cluster_ips \
   -v arbitrator-ip=$ARBITRATOR_IP \
+  -v backup-ip=$BACKUP_IP \
   -v scdc1-master-ips=$SCDC1_MASTER_IPS \
   -v scdc1-proxy-ip=$SCDC1_PROXY_IP \
   -v wdc1-master-ips=$WDC1_MASTER_IPS \
