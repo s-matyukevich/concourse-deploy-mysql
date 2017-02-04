@@ -1,7 +1,6 @@
 resources:
 - name: concourse-deploy-mysql
   type: git
-  check_every: 4h
   source:
     uri: https://github.com/s-matyukevich/concourse-deploy-mysql
     branch: master
