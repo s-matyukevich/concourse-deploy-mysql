@@ -12,6 +12,10 @@ instance_groups:
   stemcell: default
   jobs:
   - {release: cf-mysql, name: arbitrator}
+  properties:
+    cf_mysql:
+      mysql:
+        cluster_ips: ((cluster-ips))
 
 - name: backup
   instances: 1
@@ -25,6 +29,10 @@ instance_groups:
   persistent_disk_type: medium
   jobs:
   - {release: cf-mysql, name: mysql}
+  properties:
+    cf_mysql:
+      mysql:
+        cluster_ips: ((cluster-ips))
 
 - name: bootstrap
   instances: 1
@@ -35,6 +43,10 @@ instance_groups:
   stemcell: default
   jobs:
   - {release: cf-mysql, name: bootstrap}
+  properties:
+    cf_mysql:
+      mysql:
+        cluster_ips: ((cluster-ips))
 
 - name: rejoin-unsafe
   instances: 1
@@ -45,6 +57,10 @@ instance_groups:
   stemcell: default
   jobs:
   - {release: cf-mysql, name: rejoin-unsafe}
+  properties:
+    cf_mysql:
+      mysql:
+        cluster_ips: ((cluster-ips))
 
 - name: smoke-tests
   instances: 1
@@ -57,5 +73,7 @@ instance_groups:
   - {release: cf-mysql, name: smoke-tests}
   properties:
     cf_mysql:
+      mysql:
+        cluster_ips: ((cluster-ips))
       smoke_tests:
         standalone_tests_only: true

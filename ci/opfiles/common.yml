@@ -26,7 +26,6 @@
     cf_mysql:
       mysql:
         disable_auto_sst: false
-        cluster_ips: ((cluster-ips))
         admin_password: ((cf_mysql_mysql_admin_password))
         cluster_health:
           password: ((cf_mysql_mysql_cluster_health_password))
