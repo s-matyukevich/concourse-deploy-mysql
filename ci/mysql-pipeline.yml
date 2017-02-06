@@ -37,7 +37,6 @@ jobs:
 - name: deploy-to-control-plane
   plan:
     - aggregate:
-      - get: vsphere-stemcell
       - get: concourse-deploy-mysql
         # passed: [deploy-to-wdc1]
     - task: deploy
@@ -62,11 +61,9 @@ jobs:
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
         - name: concourse-deploy-mysql
-        - name: vsphere-stemcell
 - name: deploy-to-scdc1
   plan:
     - aggregate:
-      - get: vsphere-stemcell
       - get: concourse-deploy-mysql
         # passed: [upload-release-and-stemcell]
     - task: deploy
@@ -91,11 +88,9 @@ jobs:
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
         - name: concourse-deploy-mysql
-        - name: vsphere-stemcell
 - name: deploy-to-wdc1
   plan:
     - aggregate:
-      - get: vsphere-stemcell
       - get: concourse-deploy-mysql
         # passed: [deploy-to-scdc1]
     - task: deploy
@@ -120,7 +115,6 @@ jobs:
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
         inputs:
         - name: concourse-deploy-mysql
-        - name: vsphere-stemcell
 - name: bootstrap
   plan:
     - aggregate:
