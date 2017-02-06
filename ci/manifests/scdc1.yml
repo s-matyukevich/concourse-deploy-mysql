@@ -12,6 +12,10 @@ instance_groups:
   persistent_disk_type: medium
   jobs:
   - {release: cf-mysql, name: mysql}
+  properties:
+    cf_mysql:
+      mysql:
+        cluster_ips: ((cluster-ips))
 
 - name: proxy
   instances: 1
