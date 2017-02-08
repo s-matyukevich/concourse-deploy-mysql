@@ -47,7 +47,7 @@ jobs:
           source:
             repository: smatyukevich/bosh-worker
         run:
-          path: concourse-deploy-mysql/ci/tasks/deploy.sh 
+          path: concourse-deploy-mysql/ci/tasks/deploy-control-plane.sh 
         params:
           MANIFEST: concourse-deploy-mysql/ci/manifests/control-plane.yml
           VAULT_ADDR: {{vault-addr}}

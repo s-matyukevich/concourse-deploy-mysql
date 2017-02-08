@@ -12,10 +12,6 @@ instance_groups:
   persistent_disk_type: medium
   jobs:
   - {release: cf-mysql, name: mysql}
-  properties:
-    cf_mysql:
-      mysql:
-        cluster_ips: ((cluster-ips))
 
 - name: broker
   instances: 1
@@ -28,6 +24,9 @@ instance_groups:
   stemcell: default
   jobs:
   - {release: cf-mysql, name: cf-mysql-broker}
+  properties:
+    cf_mysql:
+      host: ((scdc1-broker-ip))
 
 - name: proxy
   instances: 1

@@ -31,12 +31,6 @@ bosh interpolate /tmp/tmp-manifest.yml \
   -v wdc1-broker-ip=$WDC1_BROKER_IP \
   -v scdc1-master-nodes=${#scdc_ip_array[@]} \
   -v wdc1-master-nodes=${#wdc_ip_array[@]} \
-  -v cf_admin_password=$(vault read -field=admin-password secret/$VAULT_PASSWORDS_PATH) \
-  -v cf_api_url=https://api."$(vault read -field=system-domain secret/$VAULT_PROPERTIES_PATH)" \
-  -v broker_url=mysql."$(vault read -field=system-domain secret/$VAULT_PROPERTIES_PATH)" \
-  -v app_domains=$(vault read -field=app-domain secret/$VAULT_PROPERTIES_PATH) \
-  -v nats_machines="[ $(vault read -field=nats-machine-ip secret/$VAULT_PROPERTIES_PATH) ]"
-  -v nats_password=$(vault read -field=admin-password secret/$VAULT_PASSWORDS_PATH) \
   --vars-store /tmp/props.yml   > deployment.yml
   
 vault write secret/mysql-props bosh-variables=@/tmp/props.yml
