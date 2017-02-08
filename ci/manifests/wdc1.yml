@@ -17,6 +17,18 @@ instance_groups:
       mysql:
         cluster_ips: ((cluster-ips))
 
+- name: broker
+  instances: 1
+  azs: [az1]
+  networks: 
+  - name: pcf-services
+    static_ips:
+    - ((wdc1-broker-ip))
+  vm_type: medium
+  stemcell: default
+  jobs:
+  - {release: cf-mysql, name: cf-mysql-broker}
+
 - name: proxy
   instances: 1
   azs: [az1]
