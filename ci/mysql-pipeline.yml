@@ -82,6 +82,7 @@ jobs:
           VAULT_ADDR: {{vault-addr}}
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}
+          VAULT_PASSWORDS_PATH: {{scdc1-vault-passwords-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           BACKUP_IP: {{backup-ip}}
           SCDC1_MASTER_IPS: {{scdc1-master-ips}}
@@ -111,6 +112,7 @@ jobs:
           VAULT_ADDR: {{vault-addr}}
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}
+          VAULT_PASSWORDS_PATH: {{wdc1-vault-passwords-path}}
           ARBITRATOR_IP: {{arbitrator-ip}}
           BACKUP_IP: {{backup-ip}}
           SCDC1_MASTER_IPS: {{scdc1-master-ips}}
