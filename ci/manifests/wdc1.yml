@@ -45,3 +45,13 @@ instance_groups:
     cf_mysql:
       host: ((wdc1-proxy-ip))
 
+- name: register-broker		
+  instances: 1		
+  lifecycle: errand		
+  azs: [pcf-services]		
+  networks: 
+  - name: pcf-services
+  vm_type: medium		
+  stemcell: default		
+  jobs:		
+  - {release: cf-mysql, name: broker-registrar}		

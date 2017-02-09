@@ -93,6 +93,22 @@ jobs:
           WDC1_BROKER_IP: {{wdc1-broker-ip}}
         inputs:
         - name: concourse-deploy-mysql
+    - task: register-broker		
+      config:		
+        platform: linux		
+        image_resource:		
+          type: docker-image		
+          source:		
+            repository: smatyukevich/bosh-worker		
+        run:		
+          path: concourse-deploy-mysql/ci/tasks/run-errand.sh		
+        params:		
+          BOSH_ERRAND: regiser-broker		
+          VAULT_ADDR: {{vault-addr}}		
+          VAULT_TOKEN: {{vault-token}}		
+          VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}		
+        inputs:		
+        - name: concourse-deploy-mysql
 - name: deploy-to-wdc1
   plan:
     - aggregate:
@@ -122,6 +138,22 @@ jobs:
           SCDC1_BROKER_IP: {{scdc1-broker-ip}}
           WDC1_BROKER_IP: {{wdc1-broker-ip}}
         inputs:
+        - name: concourse-deploy-mysql
+    - task: register-broker		
+      config:		
+        platform: linux		
+        image_resource:		
+          type: docker-image		
+          source:		
+            repository: smatyukevich/bosh-worker		
+        run:		
+          path: concourse-deploy-mysql/ci/tasks/run-errand.sh		
+        params:		
+          BOSH_ERRAND: regiser-broker		
+          VAULT_ADDR: {{vault-addr}}		
+          VAULT_TOKEN: {{vault-token}}		
+          VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}		
+        inputs:		
         - name: concourse-deploy-mysql
 - name: backup
   plan:
