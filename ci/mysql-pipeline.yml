@@ -103,7 +103,7 @@ jobs:
         run:		
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh		
         params:		
-          BOSH_ERRAND: regiser-broker		
+          BOSH_ERRAND: register-broker		
           VAULT_ADDR: {{vault-addr}}		
           VAULT_TOKEN: {{vault-token}}		
           VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}		
@@ -149,7 +149,7 @@ jobs:
         run:		
           path: concourse-deploy-mysql/ci/tasks/run-errand.sh		
         params:		
-          BOSH_ERRAND: regiser-broker		
+          BOSH_ERRAND: register-broker		
           VAULT_ADDR: {{vault-addr}}		
           VAULT_TOKEN: {{vault-token}}		
           VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}		
