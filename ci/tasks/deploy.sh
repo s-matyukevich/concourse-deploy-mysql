@@ -36,7 +36,7 @@ bosh interpolate /tmp/tmp-manifest.yml \
   -v broker_url=mysql."$(vault read -field=system-domain secret/$VAULT_PROPERTIES_PATH)" \
   -v app_domains=$(vault read -field=app-domain secret/$VAULT_PROPERTIES_PATH) \
   -v nats_machines="[ $(vault read -field=nats-machine-ip secret/$VAULT_PROPERTIES_PATH) ]" \
-  -v nats_password=$(vault read -field=admin-password secret/$VAULT_PASSWORDS_PATH) \
+  -v nats_password=$(vault read -field=nats-password secret/$VAULT_PASSWORDS_PATH) \
   --vars-store /tmp/props.yml   > deployment.yml
   
 vault write secret/mysql-props bosh-variables=@/tmp/props.yml
