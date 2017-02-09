@@ -9,7 +9,7 @@
   path: /releases?
   value:
   - name: cf-mysql
-    version: 32.1+dev.5
+    version: 32.1+dev.6
 
 - type: replace
   path: /update?
