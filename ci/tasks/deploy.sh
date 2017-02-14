@@ -31,6 +31,7 @@ bosh interpolate /tmp/tmp-manifest.yml \
   -v wdc1-broker-ip=$WDC1_BROKER_IP \
   -v scdc1-master-nodes=${#scdc_ip_array[@]} \
   -v wdc1-master-nodes=${#wdc_ip_array[@]} \
+  -v monitoring-ip=$MONITORING_IP \
   -v cf_admin_password=$(vault read -field=admin-password secret/$VAULT_PASSWORDS_PATH) \
   -v cf_api_url=https://api."$(vault read -field=system-domain secret/$VAULT_PROPERTIES_PATH)" \
   -v broker_url=mysql."$(vault read -field=system-domain secret/$VAULT_PROPERTIES_PATH)" \

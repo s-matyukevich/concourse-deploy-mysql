@@ -29,6 +29,7 @@ bosh interpolate /tmp/tmp-manifest.yml \
   -v wdc1-master-ips=$WDC1_MASTER_IPS \
   -v wdc1-proxy-ip=$WDC1_PROXY_IP \
   -v wdc1-broker-ip=$WDC1_BROKER_IP \
+  -v monitoring-ip=$MONITORING_IP \
   -v scdc1-master-nodes=${#scdc_ip_array[@]} \
   -v wdc1-master-nodes=${#wdc_ip_array[@]} \
   --vars-store /tmp/props.yml   > deployment.yml

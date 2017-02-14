@@ -17,6 +17,18 @@ instance_groups:
       mysql:
         cluster_ips: ((cluster-ips))
 
+- name: monitoring
+  instances: 1
+  azs: [az1]
+  networks: 
+  - name: CloudFoundry-10_119_68_0-22
+    static_ips:
+      - ((monitoring-ip))
+  vm_type: medium
+  stemcell: default
+  jobs:
+  - {release: cf-mysql, name: pmm-server}
+
 - name: backup
   instances: 1
   azs: [az1]

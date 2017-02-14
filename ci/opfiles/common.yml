@@ -9,7 +9,7 @@
   path: /releases?
   value:
   - name: cf-mysql
-    version: 32.1+dev.6
+    version: 32.1+dev.7
 
 - type: replace
   path: /update?
@@ -23,6 +23,9 @@
 - type: replace
   path: /properties?
   value:
+    pmm:
+      admin_password: ((monitoring_admin_password))
+      server_address: ((monitoring-ip))
     cf:
       admin_username: admin
       admin_password: ((cf_admin_password))
@@ -114,5 +117,7 @@
     - name: cf_mysql_broker_quota_enforcer_password
       type: password
     - name: cf_mysql_p_mysql_dashboard_secret
+      type: password
+    - name: monitoring_admin_password
       type: password
 

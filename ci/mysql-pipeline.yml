@@ -61,6 +61,7 @@ jobs:
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
           SCDC1_BROKER_IP: {{scdc1-broker-ip}}
           WDC1_BROKER_IP: {{wdc1-broker-ip}}
+          MONITORING_IP: {{monitoring-ip}}
         inputs:
         - name: concourse-deploy-mysql
 - name: deploy-to-scdc1
@@ -91,6 +92,7 @@ jobs:
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
           SCDC1_BROKER_IP: {{scdc1-broker-ip}}
           WDC1_BROKER_IP: {{wdc1-broker-ip}}
+          MONITORING_IP: {{monitoring-ip}}
         inputs:
         - name: concourse-deploy-mysql
     - task: register-broker		
@@ -137,6 +139,7 @@ jobs:
           WDC1_PROXY_IP: {{wdc1-proxy-ip}}
           SCDC1_BROKER_IP: {{scdc1-broker-ip}}
           WDC1_BROKER_IP: {{wdc1-broker-ip}}
+          MONITORING_IP: {{monitoring-ip}}
         inputs:
         - name: concourse-deploy-mysql
     - task: register-broker		
