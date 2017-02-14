@@ -1,4 +1,4 @@
-name: mysql
+name: scdc1-mysql
 
 instance_groups:
 - name: mysql

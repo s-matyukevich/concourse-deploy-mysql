@@ -1,4 +1,4 @@
-name: mysql
+name: wdc1-mysql
 
 instance_groups:
 - name: mysql
