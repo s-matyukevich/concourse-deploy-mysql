@@ -2,7 +2,8 @@ resources:
 - name: concourse-deploy-mysql
   type: git
   source:
-    uri: https://github.com/s-matyukevich/concourse-deploy-mysql
+    uri: {{git-repo-url}}
+    private_key: {{git-private-key}}
     branch: master
 - name: vsphere-stemcell
   type: bosh-io-stemcell
