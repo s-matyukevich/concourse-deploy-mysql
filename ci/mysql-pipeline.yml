@@ -63,6 +63,7 @@ jobs:
           WDC1_BROKER_IP: {{wdc1-broker-ip}}
           MONITORING_IP: {{monitoring-ip}}
           RELEASE_VERSION: {{release-version}}
+          DEPLOYMENT: cp-mysql
         inputs:
         - name: concourse-deploy-mysql
 - name: deploy-to-scdc1
@@ -95,6 +96,7 @@ jobs:
           WDC1_BROKER_IP: {{wdc1-broker-ip}}
           MONITORING_IP: {{monitoring-ip}}
           RELEASE_VERSION: {{release-version}}
+          DEPLOYMENT: scdc1-mysql
         inputs:
         - name: concourse-deploy-mysql
     - task: register-broker		
@@ -111,6 +113,7 @@ jobs:
           VAULT_ADDR: {{vault-addr}}		
           VAULT_TOKEN: {{vault-token}}		
           VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}		
+          DEPLOYMENT: scdc1-mysql
         inputs:		
         - name: concourse-deploy-mysql
 - name: deploy-to-wdc1
@@ -143,6 +146,7 @@ jobs:
           WDC1_BROKER_IP: {{wdc1-broker-ip}}
           MONITORING_IP: {{monitoring-ip}}
           RELEASE_VERSION: {{release-version}}
+          DEPLOYMENT: wdc1-mysql
         inputs:
         - name: concourse-deploy-mysql
     - task: register-broker		
@@ -159,6 +163,7 @@ jobs:
           VAULT_ADDR: {{vault-addr}}		
           VAULT_TOKEN: {{vault-token}}		
           VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}		
+          DEPLOYMENT: wdc1-mysql
         inputs:		
         - name: concourse-deploy-mysql
 - name: backup
@@ -179,5 +184,6 @@ jobs:
           VAULT_ADDR: {{vault-addr}}
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
+          DEPLOYMENT: cp-mysql
         inputs:
         - name: concourse-deploy-mysql
