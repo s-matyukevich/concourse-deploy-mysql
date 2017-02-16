@@ -39,6 +39,7 @@
       password: ((nats_password))
     cf_mysql:
       mysql:
+        max_connections: 1600
         cluster_ips: ((cluster-ips))
         disable_auto_sst: false
         admin_password: ((cf_mysql_mysql_admin_password))
