@@ -12,7 +12,7 @@ scdc_ips=${SCDC1_MASTER_IPS#"["}
 scdc_ips=${scdc_ips%"]"}
 wdc_ips=${WDC1_MASTER_IPS#"["}
 wdc_ips=${wdc_ips%"]"}
-cluster_ips="[$wdc_ips,$scdc_ips,$ARBITRATOR_IP,$BACKUP_IP]"
+cluster_ips="[$scdc_ips,$wdc_ips,$ARBITRATOR_IP,$BACKUP_IP]"
 IFS=',' read -ra scdc_ip_array <<< "$scdc_ips"
 IFS=',' read -ra wdc_ip_array <<< "$wdc_ips"
 
