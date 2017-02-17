@@ -12,10 +12,6 @@ instance_groups:
   stemcell: default
   jobs:
   - {release: cf-mysql, name: arbitrator}
-  properties:
-    cf_mysql:
-      mysql:
-        cluster_ips: ((cluster-ips))
 
 - name: monitoring
   instances: 1
@@ -41,8 +37,4 @@ instance_groups:
   persistent_disk_type: medium
   jobs:
   - {release: cf-mysql, name: mysql}
-  properties:
-    cf_mysql:
-      mysql:
-        cluster_ips: ((cluster-ips))
 
