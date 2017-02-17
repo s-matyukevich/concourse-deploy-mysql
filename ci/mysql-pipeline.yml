@@ -65,6 +65,7 @@ jobs:
           WDC1_BROKER_IP: {{wdc1-broker-ip}}
           MONITORING_IP: {{monitoring-ip}}
           RELEASE_VERSION: {{release-version}}
+          DEPLOYMENT: cp-mysql
           ENVIRONMENT: {{environment}}
         inputs:
         - name: concourse-deploy-mysql
