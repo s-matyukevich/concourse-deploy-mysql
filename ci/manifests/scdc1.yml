@@ -3,7 +3,7 @@ name: scdc1-mysql
 instance_groups:
 - name: mysql
   instances: ((scdc1-master-nodes))
-  azs: [pcf-services]
+  azs: [az1]
   networks: 
   - name: pcf-services
     static_ips: ((scdc1-master-ips))
@@ -15,7 +15,7 @@ instance_groups:
 
 - name: proxy
   instances: 1
-  azs: [pcf-services]
+  azs: [az1]
   networks: 
   - name: pcf-services
     static_ips:
@@ -32,7 +32,7 @@ instance_groups:
 
 - name: broker
   instances: 1
-  azs: [pcf-services]
+  azs: [az1]
   networks: 
   - name: pcf-services
     static_ips:
@@ -48,7 +48,7 @@ instance_groups:
 - name: register-broker		
   instances: 1		
   lifecycle: errand		
-  azs: [pcf-services]		
+  azs: [az1]		
   networks: 
   - name: pcf-services
   vm_type: medium		
