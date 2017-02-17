@@ -48,7 +48,7 @@ instance_groups:
 - name: register-broker		
   instances: 1		
   lifecycle: errand		
-  azs: [pcf-services]		
+  azs: [az1]		
   networks: 
   - name: pcf-services
   vm_type: medium		
