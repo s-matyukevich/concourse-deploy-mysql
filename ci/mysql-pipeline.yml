@@ -169,6 +169,7 @@ jobs:
           VAULT_TOKEN: {{vault-token}}		
           VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}		
           DEPLOYMENT: wdc1-mysql
+          ENVIRONMENT: {{environment}}
         inputs:		
         - name: concourse-deploy-mysql
 - name: backup
