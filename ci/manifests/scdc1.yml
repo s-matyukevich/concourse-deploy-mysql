@@ -1,4 +1,4 @@
-name: scdc1-mysql
+name: ((environment))scdc1-mysql
 
 instance_groups:
 - name: mysql

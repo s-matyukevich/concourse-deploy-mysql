@@ -33,6 +33,7 @@ bosh interpolate /tmp/tmp-manifest.yml \
   -v scdc1-master-nodes=${#scdc_ip_array[@]} \
   -v wdc1-master-nodes=${#wdc_ip_array[@]} \
   -v release-version=$RELEASE_VERSION \
+  -v environment=$ENVIRONMENT \
   --vars-store /tmp/props.yml   > deployment.yml
   
 vault write secret/mysql-props bosh-variables=@/tmp/props.yml

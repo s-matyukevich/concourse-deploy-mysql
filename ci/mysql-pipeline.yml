@@ -32,6 +32,7 @@ jobs:
           SCDC1_VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}
           WDC1_VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}
           RELEASE_URL: {{release-url}}
+          ENVIRONMENT: {{environment}}
         inputs:
         - name: concourse-deploy-mysql
         - name: vsphere-stemcell
@@ -64,7 +65,7 @@ jobs:
           WDC1_BROKER_IP: {{wdc1-broker-ip}}
           MONITORING_IP: {{monitoring-ip}}
           RELEASE_VERSION: {{release-version}}
-          DEPLOYMENT: cp-mysql
+          ENVIRONMENT: {{environment}}
         inputs:
         - name: concourse-deploy-mysql
 - name: deploy-to-scdc1
@@ -98,6 +99,7 @@ jobs:
           MONITORING_IP: {{monitoring-ip}}
           RELEASE_VERSION: {{release-version}}
           DEPLOYMENT: scdc1-mysql
+          ENVIRONMENT: {{environment}}
         inputs:
         - name: concourse-deploy-mysql
     - task: register-broker		
@@ -148,6 +150,7 @@ jobs:
           MONITORING_IP: {{monitoring-ip}}
           RELEASE_VERSION: {{release-version}}
           DEPLOYMENT: wdc1-mysql
+          ENVIRONMENT: {{environment}}
         inputs:
         - name: concourse-deploy-mysql
     - task: register-broker		
@@ -186,5 +189,6 @@ jobs:
           VAULT_TOKEN: {{vault-token}}
           VAULT_PROPERTIES_PATH: {{control-plane-vault-properties-path}}
           DEPLOYMENT: cp-mysql
+          ENVIRONMENT: {{environment}}
         inputs:
         - name: concourse-deploy-mysql

@@ -1,4 +1,4 @@
-name: cp-mysql
+name: ((environment))cp-mysql
 
 instance_groups:
 - name: arbitrator
