@@ -118,6 +118,7 @@ jobs:
           VAULT_TOKEN: {{vault-token}}		
           VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}		
           DEPLOYMENT: scdc1-mysql
+          ENVIRONMENT: {{environment}}
         inputs:		
         - name: concourse-deploy-mysql
 - name: deploy-to-wdc1
