@@ -67,6 +67,8 @@ jobs:
           RELEASE_VERSION: {{release-version}}
           DEPLOYMENT: cp-mysql
           ENVIRONMENT: {{environment}}
+          SYSLOG_ADDRESS: {{syslog-address}}
+          SYSLOG_PORT: {{syslog-port}}
         inputs:
         - name: concourse-deploy-mysql
 - name: deploy-to-scdc1
@@ -101,6 +103,8 @@ jobs:
           RELEASE_VERSION: {{release-version}}
           DEPLOYMENT: scdc1-mysql
           ENVIRONMENT: {{environment}}
+          SYSLOG_ADDRESS: {{syslog-address}}
+          SYSLOG_PORT: {{syslog-port}}
         inputs:
         - name: concourse-deploy-mysql
     - task: register-broker		
@@ -153,6 +157,8 @@ jobs:
           RELEASE_VERSION: {{release-version}}
           DEPLOYMENT: wdc1-mysql
           ENVIRONMENT: {{environment}}
+          SYSLOG_ADDRESS: {{syslog-address}}
+          SYSLOG_PORT: {{syslog-port}}
         inputs:
         - name: concourse-deploy-mysql
     - task: register-broker		

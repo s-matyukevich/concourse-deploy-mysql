@@ -26,6 +26,9 @@
     pmm:
       admin_password: ((monitoring_admin_password))
       server_address: ((monitoring-ip))
+    syslog_aggregator:
+      address: ((syslog-address))
+      port: ((syslog-port))
     cf:
       admin_username: admin
       admin_password: ((cf_admin_password))
