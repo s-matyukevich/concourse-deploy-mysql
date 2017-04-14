@@ -62,10 +62,10 @@
         quota_enforcer:
           password: ((cf_mysql_broker_quota_enforcer_password))
         services:
-        - name: p-mysql
+        - name: mysql
           id: 44b26033-1f54-4087-b7bc-da9652c2a539
           dashboard_client:
-            id: p-mysql
+            id: mysql
             secret: ((cf_mysql_p_mysql_dashboard_secret))
           description: MySQL databases on demand
           metadata:
