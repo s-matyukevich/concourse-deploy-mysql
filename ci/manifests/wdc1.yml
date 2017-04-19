@@ -42,9 +42,9 @@ instance_groups:
   jobs:
   - {release: cf-mysql, name: cf-mysql-broker}
   properties:
-    broker:
-      datacenter: scdc1
     cf_mysql:
+      broker:
+        datacenter: wdc1
       host: ((wdc1-proxy-ip))
 
 - name: register-broker		
