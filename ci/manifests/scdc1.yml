@@ -42,6 +42,8 @@ instance_groups:
   jobs:
   - {release: cf-mysql, name: cf-mysql-broker}
   properties:
+    broker:
+      datacenter: scdc1
     cf_mysql:
       host: ((scdc1-proxy-ip))
 
