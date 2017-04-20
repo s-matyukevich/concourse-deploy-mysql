@@ -82,17 +82,17 @@
             id: ab08f1bc-e6fc-4b56-a767-ee0fea6e3f20
             max_storage_mb: 1024
             max_user_connections: 20
-            name: 1Gb
+            name: 1gb
           - description: Shared MySQL Server
             id: 7c458251-0e70-415f-adeb-6321b905828b
             max_storage_mb: 5120
             max_user_connections: 30
-            name: 5Gb
+            name: 5gb
           - description: Shared MySQL Server
             id: 11d0aa36-dcec-4021-85f5-ea4d9a5c8342
             max_storage_mb: 10240
             max_user_connections: 40
-            name: 10Gb
+            name: 10gb
           tags:
           - mysql
       proxy:
