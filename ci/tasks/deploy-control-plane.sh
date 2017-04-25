@@ -41,3 +41,6 @@ bosh interpolate /tmp/tmp-manifest.yml \
 vault write secret/mysql-props bosh-variables=@/tmp/props.yml
 
 bosh -n deploy deployment.yml
+
+bosh -n stop backup/0
+
