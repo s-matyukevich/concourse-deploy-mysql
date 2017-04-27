@@ -9,6 +9,13 @@ resources:
   type: bosh-io-stemcell
   source:
     name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
+- name: scdc-version
+  type: concourse-version-resource
+- name: wdc-version
+  type: concourse-version-resource
+- name: daily
+  type: time
+  source: {interval: 24h}
 
 jobs:
 - name: upload-release-and-stemcell
@@ -36,6 +43,8 @@ jobs:
         inputs:
         - name: concourse-deploy-mysql
         - name: vsphere-stemcell
+    - put: scdc-version
+    - put: wdc-version
 - name: deploy-to-control-plane
   plan:
     - aggregate:
@@ -75,7 +84,9 @@ jobs:
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
-        # passed: [upload-release-and-stemcell]
+      - get: scdc-version
+        trigger: true
+        passed: [upload-release-and-stemcell]
     - task: deploy
       config:
         platform: linux
@@ -107,6 +118,13 @@ jobs:
           SYSLOG_PORT: {{syslog-port}}
         inputs:
         - name: concourse-deploy-mysql
+- name: register-scdc-broker
+  plan:
+    - aggregate:
+      - get: concourse-deploy-mysql
+      - get: scdc-version
+        trigger: true
+        passed: [deploy-to-scdc1]
     - task: register-broker		
       config:		
         platform: linux		
@@ -125,11 +143,38 @@ jobs:
           ENVIRONMENT: {{environment}}
         inputs:		
         - name: concourse-deploy-mysql
+- name: join-monitoring
+  plan:
+    - aggregate:
+      - get: concourse-deploy-mysql
+      - get: scdc-version
+        trigger: true
+        passed: [deploy-to-scdc1]
+    - task: join-monitoring		
+      config:		
+        platform: linux		
+        image_resource:		
+          type: docker-image		
+          source:		
+            repository: smatyukevich/bosh-worker		
+        run:		
+          path: concourse-deploy-mysql/ci/tasks/join-monitoring.sh		
+        params:		
+          BOSH_ERRAND: register-broker		
+          VAULT_ADDR: {{vault-addr}}		
+          VAULT_TOKEN: {{vault-token}}		
+          VAULT_PROPERTIES_PATH: {{scdc1-vault-properties-path}}		
+          DEPLOYMENT: scdc1-mysql
+          ENVIRONMENT: {{environment}}
+        inputs:		
+        - name: concourse-deploy-mysql
 - name: deploy-to-wdc1
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
-        # passed: [deploy-to-scdc1]
+      - get: scdc-version
+        trigger: true
+        passed: [upload-release-and-stemcell]
     - task: deploy
       config:
         platform: linux
@@ -161,6 +206,13 @@ jobs:
           SYSLOG_PORT: {{syslog-port}}
         inputs:
         - name: concourse-deploy-mysql
+- name: register-wdc-broker
+  plan:
+    - aggregate:
+      - get: concourse-deploy-mysql
+      - get: wdc-version
+        trigger: true
+        passed: [deploy-to-wdc1]
     - task: register-broker		
       config:		
         platform: linux		
@@ -179,12 +231,39 @@ jobs:
           ENVIRONMENT: {{environment}}
         inputs:		
         - name: concourse-deploy-mysql
+- name: join-monitoring
+  plan:
+    - aggregate:
+      - get: concourse-deploy-mysql
+      - get: wdc-version
+        trigger: true
+        passed: [deploy-to-wdc1]
+    - task: join-monitoring		
+      config:		
+        platform: linux		
+        image_resource:		
+          type: docker-image		
+          source:		
+            repository: smatyukevich/bosh-worker		
+        run:		
+          path: concourse-deploy-mysql/ci/tasks/join-monitoring.sh		
+        params:		
+          BOSH_ERRAND: register-broker		
+          VAULT_ADDR: {{vault-addr}}		
+          VAULT_TOKEN: {{vault-token}}		
+          VAULT_PROPERTIES_PATH: {{wdc1-vault-properties-path}}		
+          DEPLOYMENT: wdc1-mysql
+          ENVIRONMENT: {{environment}}
+        inputs:		
+        - name: concourse-deploy-mysql
 - name: backup
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
-        # passed: [deploy-to-control-plane]
-    - task: bootstrap
+      - get: daily
+        passed: [deploy-to-control-plane]
+        trigger: true
+    - task: backup
       config:
         platform: linux
         image_resource:
