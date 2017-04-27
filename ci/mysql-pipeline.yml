@@ -49,7 +49,8 @@ jobs:
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
-        # passed: [deploy-to-wdc1]
+      - get: scdc-version
+        passed: [deploy-to-scdc1]
     - task: deploy
       config:
         platform: linux
@@ -172,6 +173,8 @@ jobs:
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
+      - get: scdc-version
+        passed: [deploy-to-scdc1]
       - get: wdc-version
         trigger: true
         passed: [upload-release-and-stemcell]
