@@ -2,8 +2,6 @@
 
 BASEDIR=$(dirname "$0")
 
-exit 0
-
 source $BASEDIR/common.sh  $CONTROL_PLANE_VAULT_PROPERTIES_PATH
 
 bosh -d ${ENVIRONMENT}cp-mysql -n upload-release $RELEASE_URL
