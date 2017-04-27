@@ -17,6 +17,12 @@ resources:
   type: time
   source: {interval: 24h}
 
+resource_types:
+- name: concourse-version-resource
+  type: docker-image
+  source:
+    repository: meteogroup/concourse-version-resource
+
 jobs:
 - name: upload-release-and-stemcell
   plan:
