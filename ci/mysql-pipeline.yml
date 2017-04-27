@@ -172,7 +172,7 @@ jobs:
   plan:
     - aggregate:
       - get: concourse-deploy-mysql
-      - get: scdc-version
+      - get: wdc-version
         trigger: true
         passed: [upload-release-and-stemcell]
     - task: deploy
