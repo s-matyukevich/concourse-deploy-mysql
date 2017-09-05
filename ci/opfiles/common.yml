@@ -62,7 +62,7 @@
         quota_enforcer:
           password: ((cf_mysql_broker_quota_enforcer_password))
         services:
-        - name: mysql
+        - name: ((broker_name))
           id: 44b26033-1f54-4087-b7bc-da9652c2a539
           dashboard_client:
             id: mysql

@@ -35,6 +35,7 @@ bosh interpolate /tmp/tmp-manifest.yml \
   -v release-version=$RELEASE_VERSION \
   -v syslog-address=$SYSLOG_ADDRESS \
   -v syslog-port=$SYSLOG_PORT \
+  -v broker_name=$BROKER_NAME \
   -v environment=$ENVIRONMENT \
   --vars-store /tmp/props.yml   > deployment.yml
   

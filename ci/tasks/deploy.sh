@@ -41,6 +41,7 @@ bosh interpolate /tmp/tmp-manifest.yml \
   -v nats_machines="[ $(vault read -field=nats-machine-ip secret/$VAULT_PROPERTIES_PATH) ]" \
   -v nats_password=$(vault read -field=nats-pass secret/$VAULT_PASSWORDS_PATH) \
   -v release-version=$RELEASE_VERSION \
+  -v broker_name=$BROKER_NAME \
   -v environment=$ENVIRONMENT \
   --vars-store /tmp/props.yml   > deployment.yml
   
