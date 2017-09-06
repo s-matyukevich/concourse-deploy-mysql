@@ -36,12 +36,11 @@ bosh interpolate /tmp/tmp-manifest.yml \
   -v syslog-port=$SYSLOG_PORT \
   -v cf_admin_password=$(vault read -field=admin-password secret/$VAULT_PASSWORDS_PATH) \
   -v cf_api_url=https://api."$(vault read -field=system-domain secret/$VAULT_PROPERTIES_PATH)" \
-  -v broker_url=$BROKER_NAME."$(vault read -field=system-domain secret/$VAULT_PROPERTIES_PATH)" \
+  -v broker_url=$ENVIRONMENT-mysql."$(vault read -field=system-domain secret/$VAULT_PROPERTIES_PATH)" \
   -v app_domains=$(vault read -field=app-domain secret/$VAULT_PROPERTIES_PATH) \
   -v nats_machines="[ $(vault read -field=nats-machine-ip secret/$VAULT_PROPERTIES_PATH) ]" \
   -v nats_password=$(vault read -field=nats-pass secret/$VAULT_PASSWORDS_PATH) \
   -v release-version=$RELEASE_VERSION \
-  -v broker_name=$BROKER_NAME \
   -v environment=$ENVIRONMENT \
   --vars-store /tmp/props.yml   > deployment.yml
   
