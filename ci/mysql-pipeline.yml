@@ -85,7 +85,7 @@ jobs:
           ENVIRONMENT: {{environment}}
           SYSLOG_ADDRESS: {{syslog-address}}
           SYSLOG_PORT: {{syslog-port}}
-          BROKER_NAME: {{broker_name}}
+          BROKER_NAME: {{broker-name}}
         inputs:
         - name: concourse-deploy-mysql
 - name: deploy-to-scdc1
@@ -124,7 +124,7 @@ jobs:
           ENVIRONMENT: {{environment}}
           SYSLOG_ADDRESS: {{syslog-address}}
           SYSLOG_PORT: {{syslog-port}}
-          BROKER_NAME: {{broker_name}}
+          BROKER_NAME: {{broker-name}}
         inputs:
         - name: concourse-deploy-mysql
 - name: register-scdc-broker
@@ -215,7 +215,7 @@ jobs:
           ENVIRONMENT: {{environment}}
           SYSLOG_ADDRESS: {{syslog-address}}
           SYSLOG_PORT: {{syslog-port}}
-          BROKER_NAME: {{broker_name}}
+          BROKER_NAME: {{broker-name}}
         inputs:
         - name: concourse-deploy-mysql
 - name: register-wdc-broker
